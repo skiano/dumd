@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist && mkdir dist",
-    "watch": "chokidar 'src/**/*' -c 'npm run build:dev'",
-    "build:dev": "npm run clean && buble src/index.js > dist/index.js",
-    "build": "npm run clean && buble src/index.js | uglifyjs --compress --mangle > src/index.min.js",
+    "watch": "npm run build:dev && chokidar 'dumd.js' -c 'npm run build:dev'",
+    "build:dev": "npm run clean && buble dumd.js > dist/index.js",
+    "build:snippet": "cat dumd.min.js | wrap \"<script type=\"text/javascript\">\" \"</script>\" > dumd.snippet.js",
+    "build": "buble dumd.js | uglifyjs --compress --mangle > dumd.min.js",
     "dev": "open $PWD/example/index.html && npm run watch"
   },
   "repository": {
@@ -29,6 +30,7 @@
   "devDependencies": {
     "buble": "^0.18.0",
     "chokidar-cli": "^1.2.0",
+    "cmd-wrap": "^1.0.4",
     "nodemon": "^1.14.12",
     "serve": "^6.4.9",
     "uglify-js": "^3.3.10"
