@@ -4,13 +4,14 @@
   "description": "dumb umd loading",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tape 'tests/**/*.js' | tap-spec",
     "clean": "rm -rf dist && mkdir dist",
     "watch": "chokidar 'dumd.js' -c 'npm run build:dev'",
     "build:dev": "perl -pe 's/LOADER_CODE/`buble dumd.js`/ge' example/index.tmpl.html > example/index.html",
     "build:snippet": "cat dumd.min.js | wrap \"module.exports = '\" \"'\" > dumd.snippet.js",
     "build": "buble dumd.js | uglifyjs --compress --mangle > dumd.min.js && npm run build:snippet",
-    "dev": "npm run build:dev && open $PWD/example/index.html && npm run watch"
+    "dev": "npm run build:dev && open $PWD/example/index.html && npm run watch",
+    "test:watch": "chokidar 'dumd.js' 'tests/**/*.js' -c 'npm run test'"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,8 @@
     "cmd-wrap": "^1.0.4",
     "nodemon": "^1.14.12",
     "serve": "^6.4.9",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.8.0",
     "uglify-js": "^3.3.10"
   }
 }
