@@ -2,14 +2,23 @@
 <html>
   <head>
     <title>dumd example</title>
+    <script type="text/javascript" src="../dist/index.js"></script>
+    <style>
+      #content {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid blue;
+      }
+    </style>
   </head>
   <body>
-    hello!
-    <script type="text/javascript" src="../dist/index.js"></script>
+    <div id="content"></div>
     <!--
       see https://github.com/umdjs/umd/tree/master/templates
       for examples of various amd constructions
     -->
-    <script type="text/javascript" src="./module-a.js"></script>
+    <script async type="text/javascript" src="./a.js"></script>
+    <script async type="text/javascript" src="./b.js"></script>
+    <script async type="text/javascript" src="./c.js"></script>
   </body>
 </html>

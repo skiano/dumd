@@ -1,3 +1,6 @@
+// TODO sopport magic 'module'
+// TODO sopport magic 'require' maybe?
+
 window.define = (function define(modules, pending) {
   const each = (arr, fn) => {
     for (let i = 0; i < arr.length; i++) {
@@ -27,6 +30,8 @@ window.define = (function define(modules, pending) {
     }
     thisModule.body = body
     window[id] = thisModule.body
+    
+    console.log('instantiate', id, JSON.stringify(thisModule.body))
 
     each(pending, (otherModuleId) => {
       const mod = modules[otherModuleId]
@@ -35,15 +40,13 @@ window.define = (function define(modules, pending) {
         mod.c -= 1
         if (mod.c === 0) {
           pending.splice(pending.indexOf(otherModuleId))
-          instantiate(modId)
+          instantiate(otherModuleId)
         }
       }
     })
   }
 
   return (moduleId, deps, factory) => {
-    console.log(moduleId, deps, factory)
-    
     if (typeof deps === 'function') factory = deps, deps = []
 
     const thisModule = modules[moduleId] = { id: moduleId, c: 0, needs: {}, factory, deps }
@@ -60,18 +63,15 @@ window.define = (function define(modules, pending) {
       }
     })
 
-    const isReady = !thisModule.needs.length
-
-    if (!thisModule.needs.length) {
+    if (thisModule.c < 1) {
       instantiate(moduleId)
     } else {
       pending.push(moduleId)
     }
   }
-})({
-  exports: {
-    body: {},
-  },
-}, [])
+})(
+  { exports: {} },
+  []
+)
 
 window.define.amd = {}
