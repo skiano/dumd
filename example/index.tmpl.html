@@ -2,9 +2,6 @@
 <html>
   <head>
     <title>dumd example</title>
-    <script type="text/javascript">
-      LOADER_CODE
-    </script>
     <style>
       #content {
         margin: 20px;
@@ -15,6 +12,11 @@
   </head>
   <body>
     <div id="content"></div>
+
+    <script type="text/javascript">
+      LOADER_CODE
+    </script>
+
     <!--
       see https://github.com/umdjs/umd/tree/master/templates
       for examples of various amd constructions
@@ -23,12 +25,5 @@
     <script async type="text/javascript" src="./a.js"></script>
     <script async type="text/javascript" src="./b.js"></script>
     <script async type="text/javascript" src="./c.js"></script>
-   
-    
-    <!--
-    <script defer type="text/javascript" src="./b.js"></script>
-    <script defer type="text/javascript" src="./a.js"></script>
-    <script defer type="text/javascript" src="./c.js"></script>
-    -->
   </body>
 </html>
