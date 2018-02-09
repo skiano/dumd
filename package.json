@@ -8,7 +8,7 @@
     "clean": "rm -rf dist && mkdir dist",
     "watch": "chokidar 'dumd.js' -c 'npm run build:dev'",
     "build:dev": "perl -pe 's/LOADER_CODE/`buble dumd.js`/ge' example/index.tmpl.html > example/index.html",
-    "build:snippet": "cat dumd.min.js | wrap \"module.exports = '<script type=\"text/javascript\">\" \"</script>'\" > dumd.snippet.js",
+    "build:snippet": "cat dumd.min.js | wrap \"module.exports = '\" \"'\" > dumd.snippet.js",
     "build": "buble dumd.js | uglifyjs --compress --mangle > dumd.min.js && npm run build:snippet",
     "dev": "npm run build:dev && open $PWD/example/index.html && npm run watch"
   },
