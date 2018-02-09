@@ -6,6 +6,6 @@
     factory(exports, require('b'), require('c'));
   }
 }(typeof self !== 'undefined' ? self : this, function (exports, b, c) {
-    c.insertContent('hello')
-    b.insertPrefixedContent('hello')
+    c.insertContent('Module A uses module C')
+    b.insertPrefixedContent('Module A uses module B, which uses C')
 }));
