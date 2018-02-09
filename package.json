@@ -8,7 +8,7 @@
     "clean": "rm -rf dist && mkdir dist",
     "watch": "npm run build:dev && chokidar 'dumd.js' -c 'npm run build:dev'",
     "build:dev": "npm run clean && buble dumd.js > dist/index.js",
-    "build:snippet": "cat dumd.min.js | wrap \"<script type=\"text/javascript\">\" \"</script>\" > dumd.snippet.js",
+    "build:snippet": "cat dumd.min.js | wrap \"module.exports = '<script type=\"text/javascript\">\" \"</script>'\" > dumd.snippet.js",
     "build": "buble dumd.js | uglifyjs --compress --mangle > dumd.min.js",
     "dev": "open $PWD/example/index.html && npm run watch"
   },
