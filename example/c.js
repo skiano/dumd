@@ -1,12 +1,12 @@
 (function (root, factory) {
+    console.log('load: c')
     if (typeof define === 'function' && define.amd) {
       // AMD. Register as an anonymous module.
       define('c', factory);
     } else {
-      factory(exports);
+      factory();
     }
-}(typeof self !== 'undefined' ? self : this, function (exports) {
-    console.log('module c is ready')
+}(typeof self !== 'undefined' ? self : this, function () {
     const elm = document.getElementById('content')
     return {
       insertContent(content) {

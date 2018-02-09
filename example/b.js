@@ -1,4 +1,5 @@
 (function (root, factory) {
+  console.log('load: b')
   if (typeof define === 'function' && define.amd) {
     define('b', ['exports', 'c'], factory);
   } else {
