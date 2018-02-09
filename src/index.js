@@ -1,5 +1,6 @@
-// TODO sopport magic 'module'
-// TODO sopport magic 'require' maybe?
+// TODO support magic 'module'
+// TODO support magic 'require' maybe?
+// TODO either handle cyclic deps or throw if they exist
 
 window.define = (function define(modules, pending) {
   const each = (arr, fn) => {
