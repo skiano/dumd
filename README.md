@@ -1,0 +1,2 @@
+# dumd
+Dumb UMD loading
