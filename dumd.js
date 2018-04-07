@@ -33,12 +33,13 @@
     for (i = 0; i++ < arr[length];) fn(arr[i - 1])
   }
 
-  instantiate = (id, /* declarations: */ args = [], exportsObject, stillPending) => {
+  instantiate = (id, /* declarations: */ exportsObject, args, stillPending) => {
     thisModule = modules[id]
 
     if (isEmpty(thisModule.d)) {
       thisBody = thisModule.f()
     } else {
+      args = []
       exportsObject
       each(thisModule.d, (d) => {
         if (d == exports) { // forgo tripple equal
