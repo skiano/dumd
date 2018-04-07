@@ -13,26 +13,29 @@
   exports,
   define,
   length,
-  push
+  push,
+  /* declarations: */
+  isEmpty,
+  each,
+  instantiate,
 ) {
   // support magic exports
   modules[exports] = {}
 
-  const isEmpty = v => !v || !v[length]
+  isEmpty = v => !v || !v[length]
 
-  const each = (arr, fn) => {
-    for (let i = 0; i++ < arr[length];) fn(arr[i - 1])
+  each = (arr, fn, /* declarations: */ i) => {
+    for (i = 0; i++ < arr[length];) fn(arr[i - 1])
   }
 
-  const instantiate = (id) => {
-    const thisModule = modules[id]
+  instantiate = (id, /* declarations: */ thisBody, thisModule, exportsObject, args, stillPending) => {
+    thisModule = modules[id]
 
-    let thisBody
     if (isEmpty(thisModule[deps])) {
       thisBody = thisModule[factory]()
     } else {
-      const args = []
-      let exportsObject
+      args = []
+      exportsObject
       each(thisModule[deps], (d) => {
         if (d === exports) {
           exportsObject = {}
@@ -47,9 +50,9 @@
     thisModule[body] = thisBody
     window[id] = thisBody
 
-    const stillPending = []
-    each(pending, (otherModuleId) => {
-      const mod = modules[otherModuleId]
+    stillPending = []
+    each(pending, (otherModuleId, /* declarations */ mod) => {
+      mod = modules[otherModuleId]
       if (mod[needs][id]) {
         delete mod[needs][id]
         mod.c -= 1
@@ -63,10 +66,10 @@
     pending = stillPending
   }
 
-  window[define] = (moduleId, modDeps, modFactory) => {
+  window[define] = (moduleId, modDeps, modFactory, /* declarations: */ thisModule) => {
     if (typeof modDeps === 'function') modFactory = modDeps, modDeps = []
 
-    const thisModule = modules[moduleId] = { id: moduleId, c: 0 }
+    thisModule = modules[moduleId] = { id: moduleId, c: 0 }
     thisModule[factory] = modFactory
     thisModule[deps] = modDeps
     thisModule[needs] = {}
@@ -89,7 +92,7 @@
       pending[push](moduleId)
     }
   }
-  
+
   window[define].amd = {}
 })(
   {},
