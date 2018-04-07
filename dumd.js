@@ -22,6 +22,7 @@
   instantiate,
   thisBody,
   thisModule,
+  undef,
 ) {
   // support magic exports
   modules[exports] = {}
@@ -48,14 +49,14 @@
           args[push](modules[d].b)
         }
       })
-      thisBody = thisModule.f[apply](null, args)
+      thisBody = thisModule.f[apply](undef, args)
       if (exportsObject) thisBody = exportsObject
     }
     thisModule.b = thisBody
     window[id] = thisBody
 
     stillPending = []
-    each(pending, (otherModuleId, /* declarations */ mod, undef) => {
+    each(pending, (otherModuleId, /* declarations */ mod) => {
       mod = modules[otherModuleId]
       if (mod.n[id]) {
         mod.n[id] = undef
