@@ -97,10 +97,10 @@
 })(
   {},
   [],
-  'n',
-  'd',
-  'b',
-  'f',
+  0, // needs
+  1, // deps
+  2, // body
+  3, // factory
   window,
   'exports',
   'define',
