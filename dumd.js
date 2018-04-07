@@ -49,7 +49,7 @@
           args[push](modules[d].b)
         }
       })
-      thisBody = thisModule.f[apply](undef, args)
+      thisBody = thisModule.f[apply](window, args)
       if (exportsObject) thisBody = exportsObject
     }
     thisModule.b = thisBody
