@@ -51,10 +51,10 @@
     window[id] = thisBody
 
     stillPending = []
-    each(pending, (otherModuleId, /* declarations */ mod) => {
+    each(pending, (otherModuleId, /* declarations */ mod, undef) => {
       mod = modules[otherModuleId]
       if (mod[needs][id]) {
-        delete mod[needs][id]
+        mod[needs][id] = undef
         mod.c -= 1
         if (mod.c === 0) {
           instantiate(otherModuleId)
