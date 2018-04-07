@@ -14,6 +14,7 @@
   define,
   length,
   push,
+  apply,
   /* declarations: */
   isEmpty,
   each,
@@ -44,7 +45,7 @@
           args[push](modules[d][body])
         }
       })
-      thisBody = thisModule[factory].apply(null, args)
+      thisBody = thisModule[factory][apply](null, args)
       if (exportsObject) thisBody = exportsObject
     }
     thisModule[body] = thisBody
@@ -67,7 +68,7 @@
   }
 
   window[define] = (moduleId, modDeps, modFactory, /* declarations: */ thisModule) => {
-    if (typeof modDeps === 'function') modFactory = modDeps, modDeps = []
+    if (modDeps[apply]) modFactory = modDeps, modDeps = []
 
     thisModule = modules[moduleId] = { id: moduleId, c: 0 }
     thisModule[factory] = modFactory
@@ -105,5 +106,6 @@
   'exports',
   'define',
   'length',
-  'push'
+  'push',
+  'apply'
 )
