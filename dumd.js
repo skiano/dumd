@@ -59,7 +59,7 @@
         if (mod.c === 0) {
           instantiate(otherModuleId)
         } else {
-          stillPending.push(otherModuleId)
+          stillPending[push](otherModuleId)
         }
       }
     })
