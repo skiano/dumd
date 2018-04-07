@@ -39,7 +39,7 @@
       args = []
       exportsObject
       each(thisModule.d, (d) => {
-        if (d === exports) {
+        if (d == exports) { // forgo tripple equal
           exportsObject = {}
           args[push](exportsObject)
         } else {
@@ -58,7 +58,7 @@
       if (mod.n[id]) {
         mod.n[id] = undef
         mod.c -= 1
-        if (mod.c === 0) {
+        if (mod.c == 0) { // forgo tripple equal
           instantiate(otherModuleId)
         } else {
           stillPending[push](otherModuleId)
