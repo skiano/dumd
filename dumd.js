@@ -52,7 +52,8 @@
       thisBody = thisModule.f[apply](window, args)
       if (exportsObject) thisBody = exportsObject
     }
-    window[id] = thisModule.b = thisBody
+    thisModule.b = thisBody
+    window[id] = thisBody
 
     stillPending = []
     each(pending, (otherModuleId, /* declarations */ mod) => {
