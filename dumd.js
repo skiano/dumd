@@ -20,6 +20,8 @@
   isEmpty,
   each,
   instantiate,
+  thisBody,
+  thisModule,
 ) {
   // support magic exports
   modules[exports] = {}
@@ -30,7 +32,7 @@
     for (i = 0; i++ < arr[length];) fn(arr[i - 1])
   }
 
-  instantiate = (id, /* declarations: */ thisBody, thisModule, exportsObject, args, stillPending) => {
+  instantiate = (id, /* declarations: */ exportsObject, args, stillPending) => {
     thisModule = modules[id]
 
     if (isEmpty(thisModule.d)) {
@@ -68,7 +70,7 @@
     pending = stillPending
   }
 
-  window[define] = (moduleId, modDeps, modFactory, /* declarations: */ thisModule) => {
+  window[define] = (moduleId, modDeps, modFactory) => {
     if (modDeps[apply]) modFactory = modDeps, modDeps = []
 
     thisModule = modules[moduleId] = { id: moduleId, c: 0 }
