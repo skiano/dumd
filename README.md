@@ -2,9 +2,15 @@
 
 `dumd` helps ensure that a set of umd/amd javascripts execute in proper order. It doesn’t have the overhead of a true amd loader or the sophistication of webpack loader or systemjs, but if all you want to do is use async script tags with umd bundles, this may help.
 
+As a result it can be tiny (about 600 bytes minified before gzip)
+
 ### why?
 
 Sometimes I know exactly what modules I want on my page, and all I want is for them to load asynchronously and instantiate in the correct order. If they none of them are inline, I can sort of achieve this with `defered` attributes. However, deferred is not gaurenteed to work some inlined scripts depend on non-inlined scripts.
+
+### what it does?
+
+`dumd` creates a global `define` function that pretends to be an `amd` loader. It then waits for any umd or amd scripts to load on the page and only executes them if and when all their dependencies are also loaded.
 
 ### what about umd bundles without ids?
 
