@@ -2,7 +2,7 @@
   "name": "dumd",
   "version": "1.0.0",
   "description": "dumb umd loading",
-  "main": "dist/index.js",
+  "main": "dumd.min.js",
   "scripts": {
     "test": "tape 'tests/**/*.js' | tap-spec",
     "clean": "rm -rf dist && mkdir dist",
@@ -11,7 +11,7 @@
     "build:snippet": "cat dumd.min.js | wrap \"module.exports = '\" \"'\" > dumd.snippet.js",
     "build": "buble dumd.js | uglifyjs --compress --mangle > dumd.min.js && npm run build:snippet",
     "dev": "npm run build:dev && open $PWD/example/index.html && npm run watch",
-    "test:watch": "chokidar 'dumd.js' 'tests/**/*.js' -c 'npm run test'"
+    "test:watch": "chokidar 'dumd.js|tools/**/*' 'tests/**/*.js' -c 'npm run test'"
   },
   "repository": {
     "type": "git",
@@ -32,11 +32,16 @@
     "buble": "^0.18.0",
     "chokidar-cli": "^1.2.0",
     "cmd-wrap": "^1.0.4",
+    "de-indent": "^1.0.2",
     "filesize": "^3.6.1",
     "nodemon": "^1.14.12",
     "serve": "^6.4.9",
     "tap-spec": "^4.1.1",
     "tape": "^4.8.0",
     "uglify-js": "^3.3.10"
+  },
+  "dependencies": {
+    "dlv": "^1.1.1",
+    "recast": "^0.14.7"
   }
 }

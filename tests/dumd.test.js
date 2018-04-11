@@ -55,7 +55,7 @@ test('module loading supports standard define and exports', function (t) {
       { id: 'c' }
     ]
   }, 'instantiates in order')
-  
+
   bootstrap()
   window.define('c', moduleFacoryC)
   window.define('a', ['b', 'c'], moduleFacoryA)
