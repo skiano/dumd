@@ -1,6 +1,5 @@
 .DS_Store
 dist
-example/index.html
 
 # Logs
 logs
@@ -60,4 +59,3 @@ typings/
 
 # dotenv environment variables file
 .env
-
