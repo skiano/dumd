@@ -4,15 +4,30 @@
 
 As a result it can be tiny (about 600 bytes minified before gzip)
 
-### why?
+### why
 
 Sometimes I know exactly what modules I want on my page, and all I want is for them to load asynchronously and instantiate in the correct order. If they none of them are inline, I can sort of achieve this with `defered` attributes. However, deferred is not gaurenteed to work some inlined scripts depend on non-inlined scripts.
 
-### what it does?
+### usage
+
+You can import the actual javascript with:
+
+```javascript
+const dumd = require('dumd')
+```
+
+But you can also import a module that exports the javascript as a string, which is useful for rendering into templates:
+
+```javascript
+const dumdSnippet = require('dumd')
+console.log(`<script>${dumdSnippet}</script>`
+```
+
+### what it does
 
 `dumd` creates a global `define` function that pretends to be an `amd` loader. It then waits for any umd or amd scripts to load on the page and only executes them if and when all their dependencies are also loaded.
 
-### what about umd bundles without ids?
+### what about umd bundles without ids
 
 Many third party components or builds either do not include an amd module id in their build, or they define a strange id that does not relate to their npm package name.
 
@@ -20,7 +35,7 @@ To help with this `dumd` provides a tool that can take a string of code and inje
 
 You can use it like so:
 
-```
+```javascript
 const defineIds = require('umd/tools/defineIds')
 defineIds(code, ids)
 ```
