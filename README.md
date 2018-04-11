@@ -11,7 +11,9 @@ And you can do something like the following:
 <html>
   <head></head>
   <body>
-    <script type="text/javascript">/* dumd snippet */</script>
+    <script type="text/javascript">
+      /* dumd snippet goes here to ensure that everything instantiates in order */
+    </script>
     <script async="true" type="text/javascript" src="b-needs-a.js"></script>
     <script async="true" type="text/javascript" src="c-needs-a-and-b.js"></script>
     <script async="true" type="text/javascript" src="a.js"></script>
