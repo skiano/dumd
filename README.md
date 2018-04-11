@@ -30,7 +30,7 @@ Sometimes you know exactly what modules you want on my page, and all you want is
 `dumd` creates a global `define` function that pretends to be an `amd` loader. It then waits for any umd or amd scripts to load on the page and only executes them if and when all their dependencies are also loaded. It’s a bit like `require` but with a much more minimal feature set.
 
 [See a live example](https://skiano.github.io/dumd)
-(tip: hard refresh the page to see the effect of async scripts in the browser)
+(tip: hard refresh the page to see the effect of async scripts in the network tab)
 
 ### known caveats
 
