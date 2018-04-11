@@ -6,7 +6,7 @@ As a result it can be tiny (about [600 bytes](https://github.com/skiano/dumd/blo
 
 And you can do something like the following:
 
-```
+```html
 <script type="text/javascript">/* dumd snippet */</script>
 <script async type="text/javascript" src="b-needs-a.js"></script>
 <script async type="text/javascript" src="c-needs-a-and-b.js"></script>
