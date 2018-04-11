@@ -23,7 +23,21 @@ And you can do something like the following:
 
 ### why
 
-Sometimes I know exactly what modules I want on my page, and all I want is for them to load asynchronously and instantiate in the correct order. If they none of them are inline, I can sort of achieve this with `defered` attributes. However, deferred is not gaurenteed to work some inlined scripts depend on non-inlined scripts.
+Sometimes you know exactly what modules you want on my page, and all you want is for them to load asynchronously and instantiate in the correct order. If they none of them are inline, you can sort of achieve this with `defered` attributes. However, deferred is not gaurenteed to work some inlined scripts depend on non-inlined scripts (for example this fails in some versions of IE).
+
+### what it does
+
+`dumd` creates a global `define` function that pretends to be an `amd` loader. It then waits for any umd or amd scripts to load on the page and only executes them if and when all their dependencies are also loaded. It’s a bit like `require` but with a much more minimal feature set.
+
+See a live example (TODO)
+
+### known caveats
+
+Of the [magic modules](https://github.com/requirejs/requirejs/wiki/differences-between-the-simplified-commonjs-wrapper-and-standard-amd-define#magic), only `exports` is supported because it is used so extensively in packages bundled by babel. If I run into the other two I will attempt to support them.
+
+Circular dependencies are not tested and are likely to fail.
+
+This does not help with loading modules dynamically.
 
 ### usage
 
@@ -39,18 +53,6 @@ But you can also import a module that exports the javascript as a string, which 
 const dumdSnippet = require('dumd')
 console.log(`<script>${dumdSnippet}</script>`
 ```
-
-### what it does
-
-`dumd` creates a global `define` function that pretends to be an `amd` loader. It then waits for any umd or amd scripts to load on the page and only executes them if and when all their dependencies are also loaded.
-
-### known caveats
-
-Of the [magic modules](https://github.com/requirejs/requirejs/wiki/differences-between-the-simplified-commonjs-wrapper-and-standard-amd-define#magic), only `exports` is supported because it is used so extensively in packages bundled by babel. If I run into the other two I will attempt to support them.
-
-Circular dependencies are not tested and are likely to fail.
-
-This does not help with loading modules dynamically.
 
 ----
 
