@@ -40,7 +40,7 @@ const defineIds = require('umd/tools/defineIds')
 defineIds(code, ids)
 ```
 
-Where code is a string and ids is either a single id or a list of ids to be used in order.
+Where `code` is a string and `ids` is either a single id or a list of ids to be used in order.
 
 So for example:
 
