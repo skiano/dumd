@@ -27,6 +27,8 @@ console.log(`<script>${dumdSnippet}</script>`
 
 `dumd` creates a global `define` function that pretends to be an `amd` loader. It then waits for any umd or amd scripts to load on the page and only executes them if and when all their dependencies are also loaded.
 
+----
+
 ### what about umd bundles without ids
 
 Many third party components or builds either do not include an amd module id in their build, or they define a strange id that does not relate to their npm package name.
