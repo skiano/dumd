@@ -4,6 +4,15 @@
 
 As a result it can be tiny (about [600 bytes](https://github.com/skiano/dumd/blob/master/dumd.min.js) minified before gzip)
 
+And you can do something like the following:
+
+```
+<script type="text/javascript">/* dumd snippet */</script>
+<script async type="text/javascript" src="b-needs-a.js"></script>
+<script async type="text/javascript" src="c-needs-a-and-b.js"></script>
+<script async type="text/javascript" src="a.js"></script>
+```
+
 ### why
 
 Sometimes I know exactly what modules I want on my page, and all I want is for them to load asynchronously and instantiate in the correct order. If they none of them are inline, I can sort of achieve this with `defered` attributes. However, deferred is not gaurenteed to work some inlined scripts depend on non-inlined scripts.
