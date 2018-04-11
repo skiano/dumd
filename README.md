@@ -46,7 +46,7 @@ console.log(`<script>${dumdSnippet}</script>`
 
 ### known caveats
 
-While the magic exports module is supported, the magic require module is not. I haven't run into needing it yet, so I have not prioritized it.
+Of the [magic modules](https://github.com/requirejs/requirejs/wiki/differences-between-the-simplified-commonjs-wrapper-and-standard-amd-define#magic), only exports is supported because it is used so extensively in packages bundled by babel. If I run into the other two I will attempt to support them.
 
 Circular dependencies are not tested and are likely to fail.
 
