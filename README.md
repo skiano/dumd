@@ -44,6 +44,12 @@ console.log(`<script>${dumdSnippet}</script>`
 
 `dumd` creates a global `define` function that pretends to be an `amd` loader. It then waits for any umd or amd scripts to load on the page and only executes them if and when all their dependencies are also loaded.
 
+### known caveats
+
+While the magic exports module is supported, the magic require module is not. I haven't run into needing it yet, so I have not prioritized it.
+
+Circular dependencies are not tested and are likely to fail.
+
 ----
 
 ### what about umd bundles without ids
