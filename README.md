@@ -50,6 +50,8 @@ Of the [magic modules](https://github.com/requirejs/requirejs/wiki/differences-b
 
 Circular dependencies are not tested and are likely to fail.
 
+This does not help with loading modules dynamically.
+
 ----
 
 ### what about umd bundles without ids
