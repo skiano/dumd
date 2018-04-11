@@ -23,7 +23,7 @@ And you can do something like the following:
 
 ### why
 
-Sometimes you know exactly what modules you want on a page, and all you want is for them to load asynchronously and instantiate in the correct order. If none of them are inline, you can sort of achieve this with `defered` attributes. However, deferred is not gaurenteed to work some inlined scripts depend on non-inlined scripts (for example this fails in some versions of IE).
+Sometimes you know exactly what modules you want on a page, and all you want is for them to load asynchronously and instantiate in the correct order. If none of them are inline, you can sort of achieve this with `defered` attributes. However, deferred is not gaurenteed to execute in source order if inlined scripts depend on non-inlined scripts.
 
 ### what it does
 
