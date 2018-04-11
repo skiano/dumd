@@ -2,6 +2,66 @@
 
 `dumd` helps ensure that a set of umd/amd javascripts execute in proper order. It doesn’t have the overhead of a true amd loader or the sophistication of webpack loader or systemjs, but if all you want to do is use async script tags with umd bundles, this may help.
 
-### why
+### why?
 
-....
+Sometimes I know exactly what modules I want on my page, and all I want is for them to load asynchronously and instantiate in the correct order. If they none of them are inline, I can sort of achieve this with `defered` attributes. However, deferred is not gaurenteed to work some inlined scripts depend on non-inlined scripts.
+
+### what about umd bundles without ids?
+
+Many third party components or builds either do not include an amd module id in their build, or they define a strange id that does not relate to their npm package name.
+
+To help with this `dumd` provides a tool that can take a string of code and inject ids into any umd modules it finds if they are not there or replacing them if they are.
+
+You can use it like so:
+
+```
+const defineIds = require('umd/tools/defineIds')
+defineIds(code, ids)
+```
+
+Where code is a string and ids is either a single id or a list of ids to be used in order.
+
+So for example:
+
+```javascript
+const defineIds = require('umd/tools/defineIds')
+
+// given some code
+const someCode = `
+  // simplified react bundle
+  (function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (global.React = factory());
+  }(this, (function () {     
+  })));
+
+  // simplified react-dom bundle
+  (function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('react')) :
+    typeof define === 'function' && define.amd ? define(['react'], factory) :
+    (global.ReactDOM = factory(global.React));
+  }(this, (function (React) {
+  })));
+`
+
+const codeWithIds = defineIds(someCode, ['react', 'react-dom'])
+
+expect(codeWithIds).toEqual(`
+  // simplified react bundle
+  (function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define('react', factory) :
+    (global.React = factory());
+  }(this, (function () {     
+  })));
+
+  // simplified react-dom bundle
+  (function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('react')) :
+    typeof define === 'function' && define.amd ? define('react-dom', ['react'], factory) :
+    (global.ReactDOM = factory(global.React));
+  }(this, (function (React) {
+  })));
+`)
+```
