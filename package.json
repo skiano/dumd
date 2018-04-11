@@ -1,7 +1,7 @@
 {
   "name": "dumd",
   "version": "1.0.0",
-  "description": "dumb umd loading",
+  "description": "tiny async umd resolution",
   "main": "dumd.min.js",
   "scripts": {
     "test": "tape 'tests/**/*.js' | tap-spec",
