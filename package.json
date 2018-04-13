@@ -1,6 +1,6 @@
 {
   "name": "dumd",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "tiny async umd resolution",
   "main": "dumd.snippet.js",
   "scripts": {
