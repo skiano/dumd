@@ -41,13 +41,8 @@ This does not help with loading modules dynamically.
 
 ### usage
 
-You can import the actual javascript with:
-
-```javascript
-const dumd = require('dumd')
-```
-
-But you can also import a module that exports the javascript as a string, which is useful for rendering into templates:
+The dumd snippet should be injected into your page as an inline script. To make this easy,
+you can require `dumd` in node and it will export a string with the mangled javascript.
 
 ```javascript
 const dumdSnippet = require('dumd')
