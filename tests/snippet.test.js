@@ -4,7 +4,7 @@ test('snippet build', (t) => {
   t.plan(1)
 
   t.doesNotThrow(() => {
-    const dumd = require('../dumd.snippet')
+    const dumd = require('../')
     eval(dumd)
   })
 })
