@@ -23,7 +23,7 @@ And you can do something like the following:
 
 ### why
 
-Sometimes you know exactly what modules you want on a page, and all you want is for them to load asynchronously and instantiate in the correct order. If none of them are inline, you can sort of achieve this with `defered` attributes. However, there are many reports of inconsistancies with how defered scripts are handled (especially if some are inline).
+If you are using webpack code splitting or something similar, this is probably not for you. But on some projects I find it easier to reason about my code by organizing it into chunks myself and bundling each chunk explicitly as a umd bundle using rollup. Fore example, shared things go in one bundle and features for certain pages go into their own bundles. I prefer the clarity of this to automagical code splitting. (TODO: create example of build)
 
 ### what it does
 
