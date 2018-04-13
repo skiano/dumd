@@ -2,7 +2,7 @@
 
 `dumd` helps ensure that a set of umd/amd javascripts execute in proper order. It doesn’t have the overhead of a full featured amd loader or the sophistication of webpack loader or systemjs, but if all you want to do is use async script tags with umd bundles, this may help.
 
-As a result it can be tiny (about [600 bytes](https://github.com/skiano/dumd/blob/master/dumd.min.js) minified before gzip)
+As a result it can be tiny, about [600 bytes](https://github.com/skiano/dumd/blob/master/dumd.min.js) (about 370B gzipped)
 
 And you can do something like the following:
 
