@@ -9,10 +9,11 @@
     "watch": "chokidar 'dumd.js' -c 'npm run build:dev'",
     "build:dev": "perl -pe 's/LOADER_CODE/`buble dumd.js`/ge' example/index.tmpl.html > index.html",
     "build:example": "perl -pe 's/LOADER_CODE/`buble dumd.js | uglifyjs --compress --mangle`/ge' example/index.tmpl.html > index.html",
-    "build:snippet": "cat dumd.min.js | wrap \"module.exports = '\" \"'\" > dumd.snippet.js",
+    "build:snippet": "node tools/createSnippet",
     "build": "buble dumd.js | uglifyjs --compress --mangle > dumd.min.js && npm run build:snippet",
     "dev": "npm run build:dev && open $PWD/index.html && npm run watch",
-    "test:watch": "chokidar 'dumd.js|tools/**/*' 'tests/**/*.js' -c 'npm run test'"
+    "test:watch": "chokidar 'dumd.js|tools/**/*' 'tests/**/*.js' -c 'npm run test'",
+    "prepublish": "npm run build && npm run test"
   },
   "repository": {
     "type": "git",
@@ -32,7 +33,6 @@
   "devDependencies": {
     "buble": "^0.18.0",
     "chokidar-cli": "^1.2.0",
-    "cmd-wrap": "^1.0.4",
     "de-indent": "^1.0.2",
     "filesize": "^3.6.1",
     "nodemon": "^1.14.12",
