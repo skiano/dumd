@@ -2,7 +2,7 @@
   "name": "dumd",
   "version": "1.0.0",
   "description": "tiny async umd resolution",
-  "main": "dumd.min.js",
+  "main": "dumd.snippet.js",
   "scripts": {
     "test": "tape 'tests/**/*.js' | tap-spec",
     "clean": "rm -rf dist && mkdir dist",
