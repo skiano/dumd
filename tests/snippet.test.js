@@ -5,6 +5,6 @@ test('snippet build', (t) => {
 
   t.doesNotThrow(() => {
     const dumd = require('../dumd.snippet')
-    console.log(eval(dumd))
+    eval(dumd)
   })
 })
