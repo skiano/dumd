@@ -23,7 +23,9 @@ And you can do something like the following:
 
 ### why
 
-If you are using webpack code splitting or something similar, this is probably not for you. But on some projects I find it easier to reason about my code by organizing it into chunks myself and bundling each chunk explicitly as a umd bundle using rollup. Fore example, shared things go in one bundle and features for certain pages go into their own bundles. I prefer the clarity of this to automagical code splitting. (TODO: create example of build)
+If you are using webpack code splitting or something similar, this is probably not for you. But on some projects I find it easier to reason about my code by organizing it into chunks myself and bundling each chunk as a umd module using rollup. Fore example, shared things go in one bundle and features for certain pages go into their own bundles. I prefer the clarity of this to automagical code splitting. (TODO: create example of build)
+
+I am excited about a future with native es modules and HTTP2, but the future is, polyfills aside, the future.
 
 ### what it does
 
