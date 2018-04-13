@@ -47,7 +47,7 @@ you can require `dumd` in node and it will export a string with the mangled java
 
 ```javascript
 const dumdSnippet = require('dumd')
-console.log(`<script>${dumdSnippet}</script>`
+console.log(`<script>${dumdSnippet}</script>`)
 ```
 
 ----
