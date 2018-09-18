@@ -15,7 +15,118 @@
 
     <!-- The dumd snippet -->
     <script type="text/javascript">
-      !function(n,c,f,i,o,t,u,d,e,p,r,a,b,h){n[i]={},e=function(n){return!n||!n[t]},p=function(n,c,f){for(f=0;f++<n[t];)c(n[f-1])},r=function(o,t,l,s){b=n[o],e(b.d)?a=b.f():(l=[],p(b.d,function(c){c==i?(t={},l[u](t)):l[u](n[c].b)}),a=b.f[d](f,l),t&&(a=t)),b.b=a,f[o]=a,s=[],p(c,function(c,f){(f=n[c]).n[o]&&(f.n[o]=h,f.c-=1,0==f.c?r(c):s[u](c))}),c=s},f[o]=function(f,i,o){i[d]&&(o=i,i=[]),(b=n[f]={id:f,c:0}).f=o,b.d=i,b.n={},p(i,function(c){n[c]&&e(n[c].n)||(b.c+=1,b.n[c]=!0)}),b.c<1?r(f):c[u](f)},f[o].amd={}}({},[],window,"exports","define","length","push","apply");
+      // TODO support magic 'module'
+// TODO support magic 'require' maybe?
+// TODO either handle cyclic deps or throw if they exist
+
+// n = needs
+// d = deps
+// b = body
+// f = factory
+
+(function define(
+  modules,
+  pending,
+  window,
+  exports,
+  define$1,
+  length,
+  push,
+  apply,
+  /* declarations: */
+  isEmpty,
+  each,
+  instantiate,
+  thisBody,
+  thisModule,
+  undef
+) {
+  // support magic exports
+  modules[exports] = {}
+
+  isEmpty = function (v) { return !v || !v[length]; }
+
+  each = function (arr, fn, /* declarations: */ i) {
+    for (i = 0; i++ < arr[length];) { fn(arr[i - 1]) }
+  }
+
+  instantiate = function (id, /* declarations: */ exportsObject, args, stillPending) {
+    thisModule = modules[id]
+
+    if (isEmpty(thisModule.d)) {
+      thisBody = thisModule.f()
+    } else {
+      args = []
+      exportsObject
+      each(thisModule.d, function (d) {
+        if (d == exports) { // forgo tripple equal
+          exportsObject = {}
+          args[push](exportsObject)
+        } else {
+          args[push](modules[d].b)
+        }
+      })
+      thisBody = thisModule.f[apply](window, args)
+      if (exportsObject) { thisBody = exportsObject }
+    }
+    thisModule.b = thisBody
+    window[id] = thisBody
+
+    stillPending = []
+    each(pending, function (otherModuleId, /* declarations */ mod) {
+      mod = modules[otherModuleId]
+      if (mod.n[id]) {
+        mod.n[id] = undef
+        mod.c -= 1
+        if (mod.c == 0) { // forgo tripple equal
+          instantiate(otherModuleId)
+        } else {
+          stillPending[push](otherModuleId)
+        }
+      }
+    })
+    pending = stillPending
+  }
+
+  window[define$1] = function (moduleId, modDeps, modFactory) {
+    if (modDeps[apply]) { modFactory = modDeps, modDeps = [] }
+
+    thisModule = modules[moduleId] = { id: moduleId, c: 0 }
+    thisModule.f = modFactory
+    thisModule.d = modDeps
+    thisModule.n = {}
+
+    // what, if anything does this module need?
+    // each(deps, () => {})
+    each(modDeps, function (need) {
+      if (
+        !modules[need] || // the module isnt here yet
+        !isEmpty(modules[need].n) // the module is here but needs stuff
+      ) {
+        thisModule.c += 1
+        thisModule.n[need] = true
+      }
+    })
+
+    if (thisModule.c < 1) {
+      instantiate(moduleId)
+    } else {
+      pending[push](moduleId)
+    }
+  }
+
+  window[define$1].amd = {}
+})(
+  {},
+  [],
+  window,
+  'exports',
+  'define',
+  'length',
+  'push',
+  'apply'
+)
+
 
     </script>
 

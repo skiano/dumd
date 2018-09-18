@@ -32,14 +32,14 @@
   "homepage": "https://github.com/skiano/dumd#readme",
   "devDependencies": {
     "buble": "^0.18.0",
-    "chokidar-cli": "^1.2.0",
+    "chokidar-cli": "^1.2.1",
     "de-indent": "^1.0.2",
     "filesize": "^3.6.1",
-    "nodemon": "^1.14.12",
-    "serve": "^6.4.9",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.8.0",
-    "uglify-js": "^3.3.10"
+    "nodemon": "^1.18.4",
+    "serve": "^6.5.8",
+    "tap-spec": "^4.1.2",
+    "tape": "^4.9.1",
+    "uglify-js": "^3.4.9"
   },
   "dependencies": {
     "dlv": "^1.1.1",
